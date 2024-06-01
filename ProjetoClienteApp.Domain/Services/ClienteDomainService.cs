@@ -44,15 +44,13 @@ namespace ProjetoClienteApp.Domain.Services
                 throw new ApplicationException("Cliente não foi encontrado");
             }
 
-            
-            if (clienteEdicao.Cpf == cliente.Cpf)
+
+
+            // Verifica se já existe algum cliente com o mesmo CPF
+            var clienteComMesmoCPF = _clienteRepository.GetByCpf(cliente.Cpf);
+            if (clienteComMesmoCPF != null && clienteComMesmoCPF.Id != cliente.Id)
             {
-                // Verifica se já existe algum cliente com o mesmo CPF
-                var clienteComMesmoCPF = _clienteRepository.GetByCpf(cliente.Cpf);
-                if (clienteComMesmoCPF != null)
-                {
-                    throw new ApplicationException("Já existe um cliente com o mesmo CPF");
-                }
+                throw new ApplicationException("Já existe um cliente com o mesmo CPF");
             }
 
             clienteEdicao.Nome = cliente.Nome;
@@ -88,7 +86,7 @@ namespace ProjetoClienteApp.Domain.Services
             if (cliente != null)
                 return cliente;
             else
-                throw new ApplicationException("Cliente não foi encontrado"); 
+                throw new ApplicationException("Cliente não foi encontrado");
         }
 
         //public Cliente? ObterPorCpf(string cpf)
