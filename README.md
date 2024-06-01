@@ -1,6 +1,3 @@
-# AgendaApp
-
-O AgendaApp é um sistema de controle de tarefas desenvolvido em ASP.NET API com o uso do Entity Framework e AutoMapper.
 # ProjetoClienteApp
 O ProjetoClienteApp é um sistema de gerenciamento e cadastro de clientes desenvolvido em ASP.NET API com o uso do Entity Framework, XUnit e padrões DDD (Domain Driven Design) e AutoMapper.
 
