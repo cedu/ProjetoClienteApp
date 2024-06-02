@@ -13,6 +13,19 @@ builder.Services.AddRouting(map =>
 
 builder.Services.AddSwaggerDoc();
 builder.Services.AddDependencyInjection();
+
+//Política de CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DefaultPolicy", builder =>
+    {
+        builder.WithOrigins("http://localhost:4200")
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddAutoMapper(typeof(AutoMapperConfig));
 
 var app = builder.Build();
@@ -25,6 +38,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
+
+app.UseCors("DefaultPolicy"); //Política de CORS
 
 app.MapControllers();
 
